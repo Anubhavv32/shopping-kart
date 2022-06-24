@@ -1,0 +1,12 @@
+.sidebar {
+  background-color: #ebebeb;
+}
+.product {
+  height: 100vh;
+}
+.category {
+  height: 50px;
+  padding: 10px;
+  text-align: center;
+  border-bottom: 1px solid blue;
+}
