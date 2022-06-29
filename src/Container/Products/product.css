@@ -10,3 +10,15 @@
   text-align: center;
   border-bottom: 1px solid blue;
 }
+.category-card {
+  border-bottom: 1px solid #cdbebe;
+  height: 50px;
+  cursor: pointer;
+  padding-top: 10px;
+}
+@media  only screen and (min-width: 768px) {
+  
+}
+.card {
+  border-radius: 2px;
+}

@@ -1,34 +1,35 @@
-import React, { useEffect } from "react";
-import Header from "../Home/Header";
+import React, { useEffect, useState } from "react";
+import Signup from "./Signup";
+
 function Login() {
+  const [component, setComponent] = useState("login")
+  const toggle = (component) => {
+    setComponent(component)
+  }
   return (
-    <div className="modal-content">
-      <form>
-        <div className="modal-header">
-          <h5 className="modal-title" id="staticBackdropLabel">
-            Login in
-          </h5>
-          <button
-            type="button"
-            className="btn-close"
-            data-bs-dismiss="modal"
-            aria-label="Close"
-          />
+    <div className="container">
+      <div className="card mb-3 p-2 mx-auto" style={{ maxWidth: "760px" }}>
+        {component === "login" ? <>
+        <div class="card-header text-center mb-1">
+          <h5>Login for Sabka Baazar</h5>
         </div>
-        <div className="modal-body">
-          <div className="row mb-3">
-            <label htmlFor="inputEmail3" className="col-sm-2 col-form-label">
-              Email
-            </label>
-            <div className="col-sm-10">
-              <input type="email" className="form-control" id="inputEmail3" />
+        <form>
+          <div className="modal-body">
+            <div className="mb-3">
+              <label htmlFor="exampleFormControlInput1" className="form-label">
+                Email
+              </label>
+              <input
+                type="email"
+                className="form-control"
+                id="exampleFormControlInput1"
+                placeholder="name@example.com"
+              />
             </div>
-          </div>
-          <div className="row mb-3">
-            <label htmlFor="inputPassword3" className="col-sm-2 col-form-label">
-              Password
-            </label>
-            <div className="col-sm-10">
+            <div className="mb-3">
+              <label htmlFor="inputPassword3" className="form-label">
+                Password
+              </label>
               <input
                 type="password"
                 className="form-control"
@@ -36,26 +37,29 @@ function Login() {
               />
             </div>
           </div>
-        </div>
-        <div className="modal-footer d-block text-center">
-          <>
-            <button
-              type="button"
-              className="btn btn-secondary"
-              data-bs-dismiss="modal"
-            >
-              Close
-            </button>
-            <button type="submit" className="btn btn-primary">
-              Submit
-            </button>
-          </>
-          <div>
-            Already have a account?{" "}
-            <button className="btn btn-link">SignUp</button>
+          <div className="d-block text-center">
+            <>
+              <button
+                type="button"
+                className="btn btn-secondary"
+                data-bs-dismiss="modal"
+              >
+                Close
+              </button>
+              <button type="submit" className="btn btn-primary">
+                Submit
+              </button>
+            </>
+            <div>
+              First time user?{" "}
+              <button onClick={() => toggle("signup")} className="btn btn-link">SignUp</button>
+            </div>
           </div>
-        </div>
-      </form>
+        </form>
+        </>
+        : component === "signup" ? <Signup toggle={toggle}/>
+        : null}
+      </div>
     </div>
   );
 }

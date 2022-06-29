@@ -1,0 +1,30 @@
+.site-header {
+  position: sticky;
+  top: 0;
+  z-index: 111;
+  background-color: #ffffff;
+}
+
+.site-header__wrapper {
+  display: flex;
+  justify-content: space-between;
+  position: sticky;
+}
+.site-header__wrapper img {
+  height: 75px;
+}
+.site-header__wrapper nav {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 40px;
+}
+.site-header__wrapper a {
+  color: black;
+  text-decoration: none;
+}
+header {
+	-webkit-box-shadow: 0 8px 6px -6px #ebebeb;
+	   -moz-box-shadow: 0 8px 6px -6px #ebebeb;
+	        box-shadow: 0 8px 6px -6px #ebebeb;
+}

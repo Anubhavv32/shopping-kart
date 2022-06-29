@@ -1,1 +1,12 @@
 
+.btn-kart {
+  background-color: brown;
+  color: white;
+  border-radius: 2px;
+}
+.btn-transparent{
+  background-color: transparent;
+  border-radius: 2px;
+  outline: none;
+  border: none;
+}

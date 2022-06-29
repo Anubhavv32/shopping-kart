@@ -2,9 +2,10 @@ const INITIAL_STATE = {
   bannersList: [],
   productsList: [],
   categoriesList: [],
-  cartList: [],
+  cartList: {},
 };
 const reducer = (state = INITIAL_STATE, action) => {
+  console.log(action);
   switch (action.type) {
     case "GET_BANNERS_LIST":
       return {
@@ -17,7 +18,6 @@ const reducer = (state = INITIAL_STATE, action) => {
         productsList: action.payload,
       };
     case "GET_CATEGORIES_LIST":
-      console.log(action);
       return {
         ...state,
         categoriesList: action.payload,
@@ -27,12 +27,11 @@ const reducer = (state = INITIAL_STATE, action) => {
         ...state,
         cartList: action.payload,
       };
-    // case DECREMENT:
-    //   return {
-    //     ...state,
-    //     count: state.count - 1,
-    //   };
-
+    case "MANAGE_CART":
+      return {
+        ...state,
+        cartList: action.payload
+      };
     default:
       return state;
   }

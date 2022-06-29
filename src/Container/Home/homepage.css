@@ -1,23 +1,7 @@
-.site-header {
-  position: sticky;
-  top: 0;
-  padding: 20px 0;
-  z-index: 111;
-  background-color: #ffffff;
-}
 
-.site-header__wrapper {
-  display: flex;
-  justify-content: space-between;
-  position: sticky;
+.category-banner .card .card-body img {
+  width: -webkit-fill-available;
 }
-.site-header__wrapper img {
-  width: 100px;
-  height: 100px;
-}
-.site-header__wrapper nav {
-  display: flex;
-  justify-content: space-between;
-  align-items: baseline;
-  gap: 40px;
+.slick-slide img {
+  width: -webkit-fill-available;
 }

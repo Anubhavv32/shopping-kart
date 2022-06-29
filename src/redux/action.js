@@ -2,7 +2,6 @@ import axios from "axios";
 export const getBannersList = () => {
   return (dispatch) => {
     axios.get(`http://localhost:4000/bannersJSON`).then((res) => {
-      console.log(res);
       dispatch({
         type: "GET_BANNERS_LIST",
         payload: res.data,
@@ -24,7 +23,6 @@ export const getProductsList = () => {
 export const getCategoriesList = () => {
   return (dispatch) => {
     axios.get(`http://localhost:4000/categoriesJSON`).then((res) => {
-      console.log(res);
       dispatch({
         type: "GET_CATEGORIES_LIST",
         payload: res.data,
@@ -40,5 +38,16 @@ export const getCartsList = () => {
         payload: res.data,
       });
     });
+  };
+};
+
+export const addToCart = (data) => {
+  return (dispatch) => {
+    dispatch({ type: "ADD", payload: data });
+  };
+};
+export const ManageCart = (id) => {
+  return (dispatch) => {
+    dispatch({ type: "MANAGE_CART", payload: id });
   };
 };

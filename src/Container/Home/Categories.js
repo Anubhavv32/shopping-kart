@@ -1,32 +1,26 @@
-import React, {useEffect} from "react";
+import React, { useEffect } from "react";
 import BasicCard from "./BasicCard";
-import { connect } from 'react-redux';
+import { connect } from "react-redux";
 
-import { getCategoriesList } from '../../redux/action';
+import { getCategoriesList } from "../../redux/action";
 
-function Categories({getCategoriesList, categoriesList}) {
+function Categories({ getCategoriesList, categoriesList }) {
   useEffect(() => {
     getCategoriesList();
   }, []);
-  console.log(categoriesList);
   return (
-    <div>
-    { Array.isArray(categoriesList) && categoriesList.length ?
-    categoriesList.map(category => {
-      return (
-        <div key={category.id} style={{height: "400px"}}>
-          <BasicCard category={category} />
-        </div>
-      )
-    })
-    :null}
+    <div className="category-banner">
+      {Array.isArray(categoriesList) && categoriesList.length
+        ? categoriesList.map((category, index) => {
+            return <BasicCard category={category} key={category.id} index={index}/>;
+          })
+        : null}
     </div>
   );
 }
 const mapStateToProps = (state) => {
-  console.log(state);
   return {
-    categoriesList: state.categoriesList
+    categoriesList: state.categoriesList,
   };
 };
 const mapDispatchToProps = (dispatch) => {
@@ -34,4 +28,6 @@ const mapDispatchToProps = (dispatch) => {
     getCategoriesList: () => dispatch(getCategoriesList()),
   };
 };
-export default React.memo(connect(mapStateToProps, mapDispatchToProps)(Categories));
+export default React.memo(
+  connect(mapStateToProps, mapDispatchToProps)(Categories)
+);
