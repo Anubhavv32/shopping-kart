@@ -1,0 +1,39 @@
+
+.modal-dialog {
+  position: fixed;
+  margin: auto;
+  width: 420px;
+  height: 90%;
+  right: 0px;
+  bottom: 0px;
+  border-radius: 0px;
+}
+.modal-content {
+  height: 100%;
+  border-radius: 0px;
+}
+.cart-modal .modal-header {
+  background-color: black;
+  color: white;
+  text-align: center;
+  border-radius: 0px;
+}
+.btn-close {
+  background: transparent url("../../images/close.svg") center/1em auto no-repeat;
+  opacity: 1;
+}
+.cart-modal .modal-header .modal-title {
+  margin-left: 35%;
+}
+.cart-modal .modal-body .form-control {
+  width: 30%;
+}
+.cart-modal .modal-body {
+  background-color: #ebebeb;
+}
+@media (max-width: 500px) {
+  .cart-container .card-body {
+    font-size: 12px;
+    padding: 4px;
+  }
+}

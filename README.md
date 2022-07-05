@@ -1,5 +1,5 @@
 # you need to start json server for starting this project 
-# use command ->  json-server --watch db.json --port 4000
+npx json-server --watch db.json --port 4000
 And then start the project
 
 

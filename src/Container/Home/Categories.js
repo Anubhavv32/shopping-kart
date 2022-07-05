@@ -1,8 +1,8 @@
 import React, { useEffect } from "react";
-import BasicCard from "./BasicCard";
 import { connect } from "react-redux";
 
-import { getCategoriesList } from "../../redux/action";
+import BasicCard from "./BasicCard";
+import { fetchList } from "../../redux/action";
 
 function Categories({ getCategoriesList, categoriesList }) {
   useEffect(() => {
@@ -25,7 +25,7 @@ const mapStateToProps = (state) => {
 };
 const mapDispatchToProps = (dispatch) => {
   return {
-    getCategoriesList: () => dispatch(getCategoriesList()),
+    getCategoriesList: () => dispatch(fetchList('categoriesJSON', 'GET_CATEGORIES_LIST')),
   };
 };
 export default React.memo(

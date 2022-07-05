@@ -1,7 +1,7 @@
 .site-header {
   position: sticky;
   top: 0;
-  z-index: 111;
+  z-index: 100;
   background-color: #ffffff;
 }
 
@@ -10,7 +10,7 @@
   justify-content: space-between;
   position: sticky;
 }
-.site-header__wrapper img {
+.site-header__wrapper img.logo {
   height: 75px;
 }
 .site-header__wrapper nav {
@@ -27,4 +27,12 @@ header {
 	-webkit-box-shadow: 0 8px 6px -6px #ebebeb;
 	   -moz-box-shadow: 0 8px 6px -6px #ebebeb;
 	        box-shadow: 0 8px 6px -6px #ebebeb;
+}
+@media (max-width : 500px) {
+  .site-header {
+    padding: 0 8px;
+  }
+  .site-header__wrapper img.logo {
+    height: 50px;
+  }
 }

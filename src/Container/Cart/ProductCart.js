@@ -3,6 +3,8 @@ import { connect } from "react-redux";
 import AddCircleIcon from "@mui/icons-material/AddCircle";
 import RemoveCircleIcon from "@mui/icons-material/RemoveCircle";
 import { ManageCart } from "../../redux/action";
+import lowestPrice from "../../images/lowest-price.png";
+import { Link } from "react-router-dom";
 
 export const ProductCart = ({ cartList, productsList, ManageCart }) => {
   const [productCart, setProductCart] = useState(
@@ -26,20 +28,16 @@ export const ProductCart = ({ cartList, productsList, ManageCart }) => {
   };
   let temp = 0;
   return (
-    <div className="container">
+    <div className="container cart-container mt-5">
       <div className="row mx-auto">
         <div className="col">
           {Array.isArray(productCart) && productCart.length
             ? productCart.map((product) => {
                 temp = temp + cartList[product.id] * product.price;
                 return (
-                  <div
-                    className="card mb-3 p-2 mx-auto"
-                    style={{ maxWidth: "760px" }}
-                    key={product.id}
-                  >
-                    <div className="row g-0">
-                      <div className="col-md-2">
+                  <div className="card mb-3 p-2 mx-auto" key={product.id}>
+                    <div className="row g-0" style={{ alignItems: "center" }}>
+                      <div className="col-2">
                         <img
                           src={require(`../../${product.imageURL}`)}
                           width={100}
@@ -48,52 +46,65 @@ export const ProductCart = ({ cartList, productsList, ManageCart }) => {
                           alt={product.sku}
                         />
                       </div>
-                      <div className="col-md-6">
+                      <div className="col-10">
                         <div className="card-body">
-                          <h5 className="card-title">{product.name}</h5>
-                          <p className="card-text">
-                            {cartList[product.id]} <>&#215; </>
-                            {product.price} = {cartList[product.id] * product.price}
-                          </p>
+                          <h6
+                            className="card-title"
+                            style={{ fontSize: "14px" }}
+                          >
+                            {product.name}
+                          </h6>
+                          <div
+                            className="d-flex"
+                            // style={{
+                            //   alignItems: "center",
+                            // }}
+                          >
+                            <button
+                              className="btn btn-sm"
+                              type="button"
+                              onClick={() => RemoveProduct(product.id)}
+                            >
+                              <RemoveCircleIcon />
+                            </button>
+                            <input
+                              type="number"
+                              className="form-control form-control-sm"
+                              disabled
+                              value={cartList[product.id]}
+                              style={{width: "10%"}}
+                            />
+                            <button
+                              className="btn btn-sm"
+                              type="button"
+                              onClick={() => AddProduct(product.id)}
+                            >
+                              <AddCircleIcon />
+                            </button>
+                            <>&#215; </> {product.price}
+                            {" = "}Rs: {cartList[product.id] * product.price}
+                          </div>
                         </div>
                       </div>
-                      <div className="col-4">
-                        <div
-                          className="d-flex"
-                          style={{
-                            justifyContent: "space-between",
-                            alignItems: "center",
-                          }}
-                        >
-                          <button
-                            className="btn btn-sm"
-                            type="button"
-                            onClick={() => RemoveProduct(product.id)}
-                          >
-                            <RemoveCircleIcon />
-                          </button>
-
-                          <input
-                            type="number"
-                            className="form-control"
-                            disabled
-                            value={cartList[product.id]}
-                          />
-                          <button
-                            className="btn btn-sm"
-                            type="button"
-                            onClick={() => AddProduct(product.id)}
-                          >
-                            <AddCircleIcon />
-                          </button>
-                        </div>
-                      </div>
+                      {/* <div className="col-2">Rs:{" "}{cartList[product.id] * product.price}</div> */}
                     </div>
                   </div>
                 );
               })
             : null}
-            <div>Total: {temp}</div>
+
+          <div className="card">
+            <div className="card-body d-flex" style={{ alignItems: "center" }}>
+              <img alt="" src={lowestPrice} />
+              <p>You won't find cheaper anywhere.</p>
+            </div>
+          </div>
+
+          <h6 className="text-center p-2">Total Rs: {temp}</h6>
+          <button type="button" className="btn btn-kart w-100">
+            Payment
+          </button>
+          <div className="text-center p-2">Back to <Link to="/products">Product</Link> page</div>
         </div>
       </div>
     </div>

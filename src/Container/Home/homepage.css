@@ -5,3 +5,22 @@
 .slick-slide img {
   width: -webkit-fill-available;
 }
+@media (max-width: 500px) {
+  .category-banner .card-body{
+    padding: 0;
+    padding-bottom: 4px;
+  }
+  .category-banner .card-body .col-4 {
+    align-self: center;
+  }
+  .category-banner .card-body p{
+    font-size: 12px;
+   }
+}
+
+.category-banner .card {
+  border: none;
+	-webkit-box-shadow: 0 8px 6px -6px #ebebeb;
+	   -moz-box-shadow: 0 8px 6px -6px #ebebeb;
+	        box-shadow: 0 8px 6px -6px #ebebeb;
+}

@@ -2,8 +2,7 @@ import React, { useEffect } from 'react'
 import Slider from "react-slick";
 import { connect } from 'react-redux';
 
-import { getBannersList } from '../../redux/action';
-// const Logo = require('../../images/offers/offer1.jpg');
+import { fetchList } from '../../redux/action';
 
 function Banner({bannersList, getBannersList}) {
   useEffect(() => {
@@ -23,8 +22,6 @@ function Banner({bannersList, getBannersList}) {
     <div>
       <Slider {...settings}>
         {Array.isArray(bannersList) && bannersList.length ? bannersList.map( banner => {
-          // console.log(require(`../../${banner.bannerImageUrl}`), Logo);
-          // const imgUrl = import(banner.bannerImageUrl).default;
           return (
           <div key={banner.id}>
             <img src={require(`../../${banner.bannerImageUrl}`)} alt={banner.bannerImageAlt} />
@@ -42,7 +39,7 @@ const mapStateToProps = (state) => {
 };
 const mapDispatchToProps = (dispatch) => {
   return {
-    getBannersList: () => dispatch(getBannersList()),
+    getBannersList: () => dispatch(fetchList('bannersJSON', 'GET_BANNERS_LIST')),
   };
 };
 

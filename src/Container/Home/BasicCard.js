@@ -12,13 +12,13 @@ export default function BasicCard({ category, index }) {
     >
       <div className="card-body">
         <div className="row w-100" style={index % 2 ? {flexDirection: "row-reverse"} : {flexDirection: "unset"}} >
-          <div className="col-6">
+          <div className="col-4 col-sm-6 ">
             <img
               src={require(`../../${category.imageUrl}`)}
               alt=""
             />
           </div>
-          <div className="col-6 text-center">
+          <div className="col-8 col-sm-6 text-center" style={{alignSelf: "center"}}>
             <h5>{category.name}</h5>
             <p>{category.description}</p>
             <Link to="/products">

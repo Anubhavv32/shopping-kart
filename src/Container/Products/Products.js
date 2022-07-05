@@ -1,26 +1,23 @@
 import React, { useEffect, useState } from "react";
 import { connect } from "react-redux";
 import "./product.css";
-import {
-  getCategoriesList,
-  getProductsList,
-  ManageCart,
-} from "../../redux/action";
+import { fetchList, ManageCart } from "../../redux/action";
 import AddCircleIcon from "@mui/icons-material/AddCircle";
 import RemoveCircleIcon from "@mui/icons-material/RemoveCircle";
 
-export const Products = ({
-  getCategoriesList,
-  categoriesList,
-  getProductsList,
-  productsList,
-  cartList,
-  addToCart,
-}) => {
+export const Products = (props) => {
+  const {
+    fetchCategoriesList,
+    categoriesList,
+    fetchProductsList,
+    productsList,
+    cartList,
+    addToCart,
+  } = props;
   const [category, setCategory] = useState("all");
-  useEffect(() => {
-    if (!categoriesList.length) getCategoriesList();
-    getProductsList();
+  useEffect(function () {
+    if (!categoriesList.length) fetchCategoriesList();
+    fetchProductsList();
   }, []);
   const AddProduct = (id) => {
     let list = { ...cartList };
@@ -33,10 +30,9 @@ export const Products = ({
     addToCart(list);
   };
   let screenWidth = window.innerWidth;
-  console.log(cartList);
   return (
     <div>
-      <div className="container">
+      <div className="container product-container">
         <div className="row category-list my-3">
           {categoriesList.length && screenWidth < 500 ? (
             <div className="col">
@@ -65,17 +61,15 @@ export const Products = ({
               >
                 All Products
               </div>
-              {categoriesList.map((category) => {
-                return (
-                  <div
-                    className="category-card text-center"
-                    key={category.id}
-                    onClick={() => setCategory(category.id)}
-                  >
-                    {category.name}
-                  </div>
-                );
-              })}
+              {categoriesList.map((categoryItem) => (
+                <div
+                  className="category-card text-center"
+                  key={categoryItem.id}
+                  onClick={() => setCategory(categoryItem.id)}
+                >
+                  {categoryItem.name}
+                </div>
+              ))}
             </div>
           ) : null}
           <div className="col-md-10 col-sm-12 mx-auto">
@@ -85,79 +79,90 @@ export const Products = ({
                     if (product.category === category || category === "all") {
                       return (
                         <div
-                          className="col-lg-3 col-md-4 col-12 mb-2 px-1"
+                          className="col-lg-3 col-md-6 col-12 mb-2 px-1"
                           key={product.id}
                         >
                           <div className="card h-100 p-1">
                             <h6
                               className="card-title h6"
-                              style={{ minHeight: "40px" }}
+                              style={{ fontSize: "14px" }}
                             >
                               {product.name}
                             </h6>
-                            <div className="card-body p-md-0">
-                              <img
-                                src={require(`../../${product.imageURL}`)}
-                                className="card-img-top"
-                                alt="..."
-                              />
-                              <p
-                                className="card-text p-2"
-                                style={{ fontSize: "14px", backgroundColor: "#ebebeb" }}
-                              >
-                                {product.description}
-                              </p>
+                            <div className="card-body p-md-0 d-lg-block d-flex">
+                              <div style={{ padding: "8px" }}>
+                                <img
+                                  src={require(`../../${product.imageURL}`)}
+                                  className="card-img-top"
+                                  alt="..."
+                                />
+                              </div>
                               <div
-                                className="d-flex my-3"
-                                style={{
-                                  justifyContent: "space-between",
-                                  alignItems: "center",
-                                }}
+                                style={
+                                  screenWidth > 800
+                                    ? { width: "100%", position: "relative" }
+                                    : { width: "150%" }
+                                }
                               >
-                                <h6
-                                  className="m-0"
-                                  style={{ fontSize: "12px" }}
+                                <p
+                                  className="card-text p-2 card-description"
+                                  style={{
+                                    fontSize: "14px",
+                                    backgroundColor: "#ebebeb",
+                                  }}
                                 >
-                                  MRP Rs: {product.price}
-                                </h6>
-                                {!cartList[product.id] ? (
-                                  <button
-                                    className="btn btn-sm btn-kart"
-                                    type="button"
-                                    onClick={() => AddProduct(product.id)}
-                                  >
-                                    Add
-                                  </button>
-                                ) : (
+                                  {product.description}
+                                </p>
+
+                                {screenWidth >= 800 ? (
                                   <div
-                                    className="d-flex"
+                                    className="d-flex my-3"
                                     style={{
                                       justifyContent: "space-between",
                                       alignItems: "center",
                                     }}
                                   >
-                                    <button
-                                      className="btn-transparent"
-                                      type="button"
-                                      onClick={() => RemoveProduct(product.id)}
+                                    <p
+                                      className="m-0"
+                                      style={{ fontSize: "12px" }}
                                     >
-                                      <RemoveCircleIcon />
-                                    </button>
-
-                                    <input
-                                      type="number"
-                                      className="form-control"
-                                      disabled
-                                      value={cartList[product.id]}
-                                      style={{ width: "50px" }}
-                                    />
-                                    <button
-                                      className="btn-transparent"
-                                      type="button"
-                                      onClick={() => AddProduct(product.id)}
-                                    >
-                                      <AddCircleIcon />
-                                    </button>
+                                      <strong>MRP Rs: {product.price}</strong>
+                                    </p>
+                                    {!cartList[product.id] ? (
+                                      <button
+                                        className="btn btn-sm btn-kart"
+                                        type="button"
+                                        onClick={() => AddProduct(product.id)}
+                                      >
+                                        Add
+                                      </button>
+                                    ) : (
+                                      <ConditionalButtonSet
+                                        RemoveProduct={RemoveProduct}
+                                        AddProduct={AddProduct}
+                                        productId={product.id}
+                                        noOfItem={cartList[product.id]}
+                                      />
+                                    )}
+                                  </div>
+                                ) : (
+                                  <div>
+                                    {!cartList[product.id] ? (
+                                      <button
+                                        className="btn btn-kart btn-sm w-100 px-1"
+                                        onClick={() => AddProduct(product.id)}
+                                      >
+                                        Buy now @ Rs {product.price}
+                                      </button>
+                                    ) : (
+                                      <ConditionalButtonSet
+                                        price={product.price}
+                                        RemoveProduct={RemoveProduct}
+                                        AddProduct={AddProduct}
+                                        productId={product.id}
+                                        noOfItem={cartList[product.id]}
+                                      />
+                                    )}
                                   </div>
                                 )}
                               </div>
@@ -186,10 +191,59 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    getCategoriesList: () => dispatch(getCategoriesList()),
-    getProductsList: () => dispatch(getProductsList()),
+    fetchCategoriesList: () =>
+      dispatch(fetchList("categoriesJSON", "GET_CATEGORIES_LIST")),
+    fetchProductsList: () =>
+      dispatch(fetchList("productsJSON", "GET_PRODUCTS_LIST")),
     addToCart: (id) => dispatch(ManageCart(id)),
   };
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(Products);
+
+const ConditionalButtonSet = ({
+  RemoveProduct,
+  noOfItem,
+  productId,
+  AddProduct,
+  price,
+}) => {
+  return (
+    <div
+      className="d-flex"
+      style={{
+        justifyContent: "space-between",
+        alignItems: "center",
+      }}
+    >
+      <p className="m-0" style={{ fontSize: "12px" }}>
+        <strong>MRP Rs: {price}</strong>
+      </p>
+      <button
+        className="btn-transparent"
+        type="button"
+        onClick={() => RemoveProduct(productId)}
+      >
+        {" "}
+        <RemoveCircleIcon />
+      </button>
+      <label>
+        <input
+          type="number"
+          className="form-control form-control-sm"
+          disabled
+          value={noOfItem}
+          style={{ width: "50px" }}
+        />
+      </label>
+      <button
+        className="btn-transparent"
+        type="button"
+        onClick={() => AddProduct(productId)}
+      >
+        {" "}
+        <AddCircleIcon />
+      </button>
+    </div>
+  );
+};

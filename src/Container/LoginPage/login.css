@@ -1,0 +1,70 @@
+
+
+/* .card {
+  margin: 2rem auto;
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  max-width: 425px;
+  background-color: #fff;
+  border-radius: 10px;
+  box-shadow: 0 10px 20px 0 rgba(153, 153, 153, 0.25);
+  padding: 0.75rem;
+} */
+
+.input {
+  display: flex;
+  flex-direction: column-reverse;
+  position: relative;
+  padding-top: 1.5rem;
+}
+.input + .input {
+  margin-top: 1.5rem;
+}
+
+.input-label {
+  color: #49bdd5;;
+  position: absolute;
+  top: 1.5rem;
+  transition: 0.25s ease;
+}
+
+.input-field {
+  border: 0;
+  z-index: 1;
+  background-color: transparent;
+  border-bottom: 2px solid #eee;
+  font: inherit;
+  font-size: 1.125rem;
+  padding: 0.25rem 0;
+}
+.input-field:focus, .input-field:valid {
+  outline: 0;
+  border-bottom-color: #49bdd5;;
+}
+.input-field:focus + .input-label, .input-field:valid + .input-label {
+  color: #49bdd5;;
+  transform: translateY(-1.5rem);
+}
+
+.action {
+  margin-top: 2rem;
+}
+
+.action-button {
+  font: inherit;
+  font-size: 1.25rem;
+  padding: 0.25em;
+  width: 100%;
+  font-weight: 500;
+  background-color: #f42e68;
+  color: #fff;
+  border: 0;
+}
+.action-button:focus {
+  outline: 0;
+}
+.switch-btn a {
+  color: #4fbdd5;
+  text-decoration: none;
+}

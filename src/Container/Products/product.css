@@ -4,7 +4,7 @@
 .product {
   height: 100vh;
 }
-.category {
+.product-category {
   height: 50px;
   padding: 10px;
   text-align: center;
@@ -12,13 +12,42 @@
 }
 .category-card {
   border-bottom: 1px solid #cdbebe;
-  height: 50px;
+  min-height: 50px;
   cursor: pointer;
-  padding-top: 10px;
+  padding: 10px 0;
 }
-@media  only screen and (min-width: 768px) {
+@media  only screen and (max-width: 900px) {
+
   
 }
-.card {
+@media  only screen and (min-width: 900px) { 
+  .product-container .card h6 {
+    min-height: 50px;
+  }
+}
+/* @media  only screen and (min-width: 960px) { 
+  .card h6 {
+    min-height: 50px;
+  }
+} */
+.product-container .card {
   border-radius: 2px;
+}
+.card-description {
+  height: 100px;
+  overflow-y: auto;
+}
+@media (min-width : 320px) and (max-width : 900px) { 
+  .product-container .card .card-title {
+    text-align: center;
+  }
+  .product-container .card h6 {
+    min-height: 20px;
+  }
+}
+.card {
+  border: none;
+	-webkit-box-shadow: 0 8px 6px -6px #ebebeb;
+	   -moz-box-shadow: 0 8px 6px -6px #ebebeb;
+	        box-shadow: 0 8px 6px -6px #ebebeb;
 }

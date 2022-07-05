@@ -1,12 +1,16 @@
 import React from "react";
-import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import { Routes, Route } from "react-router-dom";
 import "./App.css";
-import Homepage from "./Container/Home/Homepage";
-import Products from "./Container/Products/Products";
-import Login from "./Container/LoginPage/Login";
-import ProductCart from "./Container/Cart/ProductCart";
+
 import Header from "./Container/Header";
 import Footer from "./Container/footer";
+import Homepage from "./Container/Home/Homepage";
+import Products from "./Container/Products/Products";
+import ProductCart from "./Container/Cart/ProductCart";
+import Login from "./Container/LoginPage/Login";
+import Signup from "./Container/LoginPage/Signup";
+import CartModal from "./Container/Cart/CartModal";
+
 function App() {
   return (
     <div className="App">
@@ -15,8 +19,10 @@ function App() {
         <Route path="/" exact element={<Homepage />} />
         <Route path="/products" exact element={<Products />} />
         <Route path="/login" exact element={<Login />} />
+        <Route path="/signup" exact element={<Signup />} />
         <Route path="/cart" exact element={<ProductCart />} />
       </Routes>
+            <CartModal />
       <Footer />
     </div>
   );
