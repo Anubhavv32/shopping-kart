@@ -39,7 +39,7 @@ export const ProductCart = ({ cartList, productsList, ManageCart }) => {
                     <div className="row g-0" style={{ alignItems: "center" }}>
                       <div className="col-2">
                         <img
-                          src={require(`../../${product.imageURL}`)}
+                          src={require(`../../${product.imageURL}`).default}
                           width={100}
                           height={100}
                           className="img-fluid rounded-start"
@@ -72,7 +72,7 @@ export const ProductCart = ({ cartList, productsList, ManageCart }) => {
                               className="form-control form-control-sm"
                               disabled
                               value={cartList[product.id]}
-                              style={{width: "10%"}}
+                              style={{ width: "10%" }}
                             />
                             <button
                               className="btn btn-sm"
@@ -86,7 +86,6 @@ export const ProductCart = ({ cartList, productsList, ManageCart }) => {
                           </div>
                         </div>
                       </div>
-                      {/* <div className="col-2">Rs:{" "}{cartList[product.id] * product.price}</div> */}
                     </div>
                   </div>
                 );
@@ -104,7 +103,9 @@ export const ProductCart = ({ cartList, productsList, ManageCart }) => {
           <button type="button" className="btn btn-kart w-100">
             Payment
           </button>
-          <div className="text-center p-2">Back to <Link to="/products">Product</Link> page</div>
+          <div className="text-center p-2">
+            Back to <Link to="/products">Product</Link> page
+          </div>
         </div>
       </div>
     </div>

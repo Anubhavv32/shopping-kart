@@ -61,7 +61,7 @@ export const CartModal = ({ cartList, productsList, ManageCart }) => {
                       <div className="row g-0" style={{alignItems:"center"}}>
                         <div className="col-2">
                           <img
-                            src={require(`../../${product.imageURL}`)}
+                            src={require(`../../${product.imageURL}`).default}
                             width={100}
                             height={100}
                             className="img-fluid rounded-start"

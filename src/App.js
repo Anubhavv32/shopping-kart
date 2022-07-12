@@ -1,5 +1,5 @@
 import React from "react";
-import { Routes, Route } from "react-router-dom";
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import "./App.css";
 
 import Header from "./Container/Header";
@@ -15,14 +15,17 @@ function App() {
   return (
     <div className="App">
       <Header />
-      <Routes>
-        <Route path="/" exact element={<Homepage />} />
-        <Route path="/products" exact element={<Products />} />
-        <Route path="/login" exact element={<Login />} />
-        <Route path="/signup" exact element={<Signup />} />
-        <Route path="/cart" exact element={<ProductCart />} />
-      </Routes>
-            <CartModal />
+      <Router>
+        <Routes>
+          <Route path="/" exact element={<Homepage />} />
+          <Route path="/products" exact element={<Products />} />
+          <Route path="/login" exact element={<Login />} />
+          <Route path="/signup" exact element={<Signup />} />
+          <Route path="/cart" exact element={<ProductCart />} />
+        </Routes>
+      </Router>
+
+      <CartModal />
       <Footer />
     </div>
   );

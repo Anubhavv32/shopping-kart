@@ -1,0 +1,54 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`MyComponent should render correctly in "debug" mode 1`] = `
+<div
+  className="container"
+>
+  <Memo(Connect(Banner)) />
+  <Memo(Connect(Categories)) />
+</div>
+`;
+
+exports[`MyComponent should render correctly in "debug" mode 2`] = `
+<ContextProvider
+  value={null}
+>
+  <Banner
+    debug={true}
+    getBannersList={[Function]}
+    store={
+      Object {
+        "clearActions": [Function],
+        "dispatch": [Function],
+        "getActions": [Function],
+        "getState": [Function],
+        "replaceReducer": [Function],
+        "subscribe": [Function],
+      }
+    }
+  />
+</ContextProvider>
+`;
+
+exports[`MyComponent should render correctly in "debug" mode 3`] = `
+<ContextProvider
+  value={null}
+>
+  <Categories
+    debug={true}
+    getCategoriesList={[Function]}
+    store={
+      Object {
+        "clearActions": [Function],
+        "dispatch": [Function],
+        "getActions": [Function],
+        "getState": [Function],
+        "replaceReducer": [Function],
+        "subscribe": [Function],
+      }
+    }
+  />
+</ContextProvider>
+`;
+
+exports[`MyComponent should render correctly in "debug" mode 4`] = `""`;

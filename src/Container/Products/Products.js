@@ -92,7 +92,7 @@ export const Products = (props) => {
                             <div className="card-body p-md-0 d-lg-block d-flex">
                               <div style={{ padding: "8px" }}>
                                 <img
-                                  src={require(`../../${product.imageURL}`)}
+                                  src={require(`../../${product.imageURL}`).default}
                                   className="card-img-top"
                                   alt="..."
                                 />

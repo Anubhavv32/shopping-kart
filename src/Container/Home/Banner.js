@@ -24,7 +24,7 @@ function Banner({bannersList, getBannersList}) {
         {Array.isArray(bannersList) && bannersList.length ? bannersList.map( banner => {
           return (
           <div key={banner.id}>
-            <img src={require(`../../${banner.bannerImageUrl}`)} alt={banner.bannerImageAlt} />
+            <img src={require(`../../${banner.bannerImageUrl}`).default} alt={banner.bannerImageAlt} />
           </div>
         )}) : null}
         </Slider>
